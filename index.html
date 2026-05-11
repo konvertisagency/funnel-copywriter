@@ -737,6 +737,14 @@ function resetAll() {
   document.querySelectorAll('input[type="text"], textarea').forEach(el => el.value = '');
   document.querySelectorAll('.radio-opt').forEach(el => el.classList.remove('selected'));
 }
+}
+
+function sendHeight() {
+  const h = document.body.scrollHeight;
+  window.parent.postMessage({ frameHeight: h }, '*');
+}
+setInterval(sendHeight, 500);
+window.addEventListener('load', sendHeight);
 </script>
 </body>
 </html>
